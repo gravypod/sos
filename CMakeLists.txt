@@ -22,7 +22,8 @@ endforeach()
 # Build ISO
 add_custom_target(sos ALL
 	COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/os/boot"
-	COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/src/grub.cfg" "${CMAKE_BINARY_DIR}/os/boot"
+	COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/os/boot/grub"
+	COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/src/grub.cfg" "${CMAKE_BINARY_DIR}/os/boot/grub"
 	COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/src/kernel/kernel.bin"   "${CMAKE_BINARY_DIR}/os/boot"
 	COMMAND grub-mkrescue -o "${CMAKE_BINARY_DIR}/sos.iso" "${CMAKE_BINARY_DIR}/os/"
 	DEPENDS ${modules}
